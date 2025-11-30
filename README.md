@@ -2,6 +2,15 @@
 
 Export your Cursor AI conversations to LLM-friendly formats with one click.
 
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/RohanGore1999.cursor-chat-exporter?label=VS%20Code%20Marketplace&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=RohanGore1999.cursor-chat-exporter)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/RohanGore1999.cursor-chat-exporter)](https://marketplace.visualstudio.com/items?itemName=RohanGore1999.cursor-chat-exporter)
+
+## Installation
+
+**[Install from VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=RohanGore1999.cursor-chat-exporter)**
+
+Or search for "Cursor Chat Exporter" in the Extensions view (`Cmd+Shift+X`).
+
 ## Features
 
 - **📤 One-Click Export**: Export any Cursor conversation to a file
@@ -13,12 +22,14 @@ Export your Cursor AI conversations to LLM-friendly formats with one click.
 ## Usage
 
 ### Quick Export
+
 1. Press `Cmd+Shift+E` (or `Ctrl+Shift+E` on Windows/Linux)
 2. Select a conversation from the list
 3. Choose your export format
 4. Save the file
 
 ### Commands
+
 - **Cursor: List All Chats** (`Cmd+Shift+L`) - Browse all conversations
 - **Cursor: Export Chat** (`Cmd+Shift+E`) - Export a single conversation
 - **Cursor: Export Recent Chat** - Export the most recent conversation
@@ -27,21 +38,21 @@ Export your Cursor AI conversations to LLM-friendly formats with one click.
 
 ### Export Formats
 
-| Format | Extension | Best For |
-|--------|-----------|----------|
-| **LLM** | `.txt` | Sharing with AI assistants (ChatGPT, Claude, etc.) |
-| **Markdown** | `.md` | Human-readable documentation |
-| **JSON Lines** | `.jsonl` | Programmatic/API use |
+| Format         | Extension | Best For                                           |
+| -------------- | --------- | -------------------------------------------------- |
+| **LLM**        | `.txt`    | Sharing with AI assistants (ChatGPT, Claude, etc.) |
+| **Markdown**   | `.md`     | Human-readable documentation                       |
+| **JSON Lines** | `.jsonl`  | Programmatic/API use                               |
 
 ## Settings
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| `cursor-chat-exporter.defaultExportPath` | `""` | Default folder for exports |
-| `cursor-chat-exporter.defaultFormat` | `"llm"` | Default export format |
-| `cursor-chat-exporter.includeToolCalls` | `false` | Include tool calls in export |
-| `cursor-chat-exporter.showStatusBarButton` | `true` | Show export button in status bar |
-| `cursor-chat-exporter.maxConversations` | `50` | Max conversations in picker |
+| Setting                                    | Default | Description                      |
+| ------------------------------------------ | ------- | -------------------------------- |
+| `cursor-chat-exporter.defaultExportPath`   | `""`    | Default folder for exports       |
+| `cursor-chat-exporter.defaultFormat`       | `"llm"` | Default export format            |
+| `cursor-chat-exporter.includeToolCalls`    | `false` | Include tool calls in export     |
+| `cursor-chat-exporter.showStatusBarButton` | `true`  | Show export button in status bar |
+| `cursor-chat-exporter.maxConversations`    | `50`    | Max conversations in picker      |
 
 ## LLM Format Example
 
@@ -79,6 +90,7 @@ Stats: 20 user, 22 assistant
 ## Release Notes
 
 ### 0.0.1
+
 - Initial release
 - Export to LLM, Markdown, and JSON Lines formats
 - Conversation picker with search
@@ -88,4 +100,3 @@ Stats: 20 user, 22 assistant
 ## License
 
 MIT
-
