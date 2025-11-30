@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4F46E5"/>
+      <stop offset="100%" style="stop-color:#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="url(#bg)"/>
+  <g fill="white">
+    <!-- Chat bubble 1 -->
+    <rect x="20" y="30" width="60" height="25" rx="8"/>
+    <polygon points="30,55 30,65 40,55"/>
+    <!-- Chat bubble 2 -->
+    <rect x="48" y="65" width="60" height="25" rx="8"/>
+    <polygon points="98,90 98,100 88,90"/>
+    <!-- Export arrow -->
+    <path d="M100,25 L115,40 L107,40 L107,55 L93,55 L93,40 L85,40 Z" fill="white" opacity="0.9"/>
+  </g>
+</svg>
+

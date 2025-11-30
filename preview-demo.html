@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursor Chat Exporter - Preview Demo</title>
+  <style>
+    :root {
+      --bg-primary: #1e1e1e;
+      --bg-secondary: #252526;
+      --bg-user: #2d4a3e;
+      --bg-assistant: #2d3a4a;
+      --bg-tool: #3a3a2d;
+      --text-primary: #cccccc;
+      --text-secondary: #888888;
+      --border-color: #404040;
+      --accent: #569cd6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      padding: 20px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: var(--bg-secondary);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .header h1 {
+      font-size: 1.4em;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .stats {
+      display: flex;
+      gap: 20px;
+      color: var(--text-secondary);
+      font-size: 0.9em;
+      flex-wrap: wrap;
+    }
+
+    .messages {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .message {
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message.user {
+      background: var(--bg-user);
+      border-left: 3px solid #4ec9b0;
+    }
+
+    .message.assistant {
+      background: var(--bg-assistant);
+      border-left: 3px solid #569cd6;
+    }
+
+    .message.tool {
+      background: var(--bg-tool);
+      border-left: 3px solid #dcdcaa;
+      font-size: 0.9em;
+    }
+
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 0.85em;
+    }
+
+    .role {
+      font-weight: 600;
+    }
+
+    .time {
+      color: var(--text-secondary);
+    }
+
+    .message-content {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-size: 0.95em;
+    }
+
+    code {
+      background: rgba(0,0,0,0.3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Fira Code', 'Consolas', monospace;
+    }
+
+    pre {
+      background: rgba(0,0,0,0.3);
+      padding: 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+
+    /* Action buttons */
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #4ec9b0;
+      color: #1e1e1e;
+    }
+
+    .btn-primary:hover {
+      background: #3db89f;
+    }
+
+    .btn-secondary {
+      background: #404040;
+      color: #cccccc;
+    }
+
+    .btn-secondary:hover {
+      background: #505050;
+    }
+
+    /* VS Code window frame simulation */
+    .vscode-frame {
+      border: 1px solid #333;
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .vscode-titlebar {
+      background: #323233;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #252526;
+    }
+
+    .vscode-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot.red { background: #ff5f56; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green { background: #27ca40; }
+
+    .vscode-title {
+      flex: 1;
+      text-align: center;
+      font-size: 0.85em;
+      color: #888;
+    }
+
+    .vscode-content {
+      padding: 20px;
+      background: var(--bg-primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="vscode-frame">
+    <div class="vscode-titlebar">
+      <div class="vscode-dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <div class="vscode-title">Chat Preview - Cursor Chat Exporter</div>
+    </div>
+    
+    <div class="vscode-content">
+      <div class="header">
+        <h1>💬 Context sharing extension planning</h1>
+        <div class="stats">
+          <span>📅 Nov 29, 2025 14:32</span>
+          <span>💬 42 messages</span>
+          <span>👤 20 user</span>
+          <span>🤖 22 AI</span>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary">📤 Export to File</button>
+          <button class="btn btn-secondary">📋 Copy to Clipboard</button>
+        </div>
+      </div>
+      
+      <div class="messages">
+        <div class="message user">
+          <div class="message-header">
+            <span class="role">👤 User</span>
+            <span class="time">14:32</span>
+          </div>
+          <div class="message-content">I'm planning to build the context sharing extension within cursor.
+
+Whatever the recent window chats we have want to share with next window or outside.
+
+Let's plan it out.</div>
+        </div>
+
+        <div class="message assistant">
+          <div class="message-header">
+            <span class="role">🤖 Assistant</span>
+            <span class="time">14:33</span>
+          </div>
+          <div class="message-content"># 📋 VS Code Extension Planning: Cursor Chat Exporter
+
+Here are the ideal approaches, from simplest to most robust:
+
+## Option 1: VS Code/Cursor Extension (Best UX)
+
+<code>cursor-chat-exporter/</code>
+├── package.json          ← Extension manifest
+├── src/
+│   └── extension.ts      ← Main extension code
+└── README.md
+
+**Features:**
+• Command Palette: "Export Cursor Chat"
+• Status Bar Button: 💬 Export Chat
+• Keyboard shortcut: Cmd+Shift+E</div>
+        </div>
+
+        <div class="message user">
+          <div class="message-header">
+            <span class="role">👤 User</span>
+            <span class="time">14:35</span>
+          </div>
+          <div class="message-content">Let's first explore the cursors data storage step by step</div>
+        </div>
+
+        <div class="message assistant">
+          <div class="message-header">
+            <span class="role">🤖 Assistant</span>
+            <span class="time">14:36</span>
+          </div>
+          <div class="message-content">Let me help you explore Cursor's data storage structure:
+
+## 📁 Cursor Data Location
+
+<pre><code>~/Library/Application Support/Cursor/User/globalStorage/
+├── state.vscdb          ← 🔥 MAIN DATABASE (SQLite)
+│   ├── ItemTable        ← VS Code settings
+│   └── cursorDiskKV     ← Chat data!
+│       ├── bubbleId:*   ← Individual messages
+│       └── composerData:* ← Full conversations</code></pre>
+
+The database is a SQLite file that stores all your conversations!</div>
+        </div>
+
+        <div class="message tool">
+          <div class="message-header">
+            <span class="role">🔧 Read File</span>
+            <span class="time">14:37</span>
+          </div>
+          <div class="message-content">Reading: ~/Library/Application Support/Cursor/User/globalStorage/state.vscdb
+Result: SQLite database opened successfully (252 MB)</div>
+        </div>
+
+        <div class="message user">
+          <div class="message-header">
+            <span class="role">👤 User</span>
+            <span class="time">14:38</span>
+          </div>
+          <div class="message-content">Perfect! Now let's build the VS Code extension</div>
+        </div>
+
+        <div class="message assistant">
+          <div class="message-header">
+            <span class="role">🤖 Assistant</span>
+            <span class="time">14:39</span>
+          </div>
+          <div class="message-content">✅ **Extension Built Successfully!**
+
+### 📁 Project Structure Created
+
+<pre><code>cursor-chat-exporter/
+├── src/
+│   ├── extension.ts       ← Main entry point
+│   ├── database/          ← SQLite queries
+│   ├── parser/            ← Bubble parsing
+│   ├── exporters/         ← LLM, Markdown, JSONL
+│   ├── commands/          ← Export commands
+│   └── ui/                ← QuickPick, Preview
+├── package.json
+└── README.md</code></pre>
+
+### 🚀 Commands Available
+
+| Command | Shortcut | Description |
+|---------|----------|-------------|
+| List Chats | <code>Cmd+Shift+L</code> | Browse conversations |
+| Export Chat | <code>Cmd+Shift+E</code> | Export single chat |
+| Preview | - | Webview preview |</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

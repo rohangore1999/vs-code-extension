@@ -1,0 +1,123 @@
+{
+  "name": "cursor-chat-exporter",
+  "displayName": "Cursor Chat Exporter",
+  "description": "Export your Cursor AI conversations to LLM-friendly formats with one click",
+  "version": "0.0.2",
+  "publisher": "RohanGore1999",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "cursor",
+    "chat",
+    "export",
+    "ai",
+    "conversation",
+    "llm"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cursor-chat-exporter.listChats",
+        "title": "Cursor: List All Chats",
+        "icon": "$(list-unordered)"
+      },
+      {
+        "command": "cursor-chat-exporter.exportChat",
+        "title": "Cursor: Export Chat",
+        "icon": "$(export)"
+      },
+      {
+        "command": "cursor-chat-exporter.exportRecent",
+        "title": "Cursor: Export Recent Chat",
+        "icon": "$(history)"
+      },
+      {
+        "command": "cursor-chat-exporter.exportAll",
+        "title": "Cursor: Export All Chats",
+        "icon": "$(files)"
+      },
+      {
+        "command": "cursor-chat-exporter.previewChat",
+        "title": "Cursor: Preview Chat",
+        "icon": "$(preview)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "cursor-chat-exporter.listChats",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l"
+      },
+      {
+        "command": "cursor-chat-exporter.exportChat",
+        "key": "ctrl+shift+e",
+        "mac": "cmd+shift+e"
+      }
+    ],
+    "configuration": {
+      "title": "Cursor Chat Exporter",
+      "properties": {
+        "cursor-chat-exporter.defaultExportPath": {
+          "type": "string",
+          "default": "",
+          "description": "Default folder for exported chats (empty = prompt each time)"
+        },
+        "cursor-chat-exporter.defaultFormat": {
+          "type": "string",
+          "enum": [
+            "llm",
+            "markdown",
+            "jsonl"
+          ],
+          "default": "llm",
+          "description": "Default export format"
+        },
+        "cursor-chat-exporter.includeToolCalls": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include tool calls in export"
+        },
+        "cursor-chat-exporter.showStatusBarButton": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show export button in status bar"
+        },
+        "cursor-chat-exporter.maxConversations": {
+          "type": "number",
+          "default": 50,
+          "description": "Maximum conversations to show in picker"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.22.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "icon": "resources/icon.png"
+}
